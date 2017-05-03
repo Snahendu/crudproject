@@ -1,0 +1,30 @@
+<H2>Users</H2>
+<p>
+    <button class="btn btn-primary" (click)="openNewUserForm()">Add User</button>
+    <div *ngIf="isLoading">
+        <i class="fa fa-spinner fa-spin fa-3x"></i>
+    </div>
+    <div *ngIf="isAdded">
+        <div class="alert alert-success" role="alert">Data added successfully</div>
+    </div>
+    <div *ngIf="isUpdated">
+        <div class="alert alert-warning" role="alert">Data updated successfully</div>
+    </div>
+    <div *ngIf="isDeleted">
+        <div class="alert alert-danger" role="alert">Data deleted successfully</div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr *ngFor="let user of users">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td><a class="btn btn-primary" [routerLink]="['/users/edituser/', user.id]"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                <td><a class="btn btn-danger" (click)="deleteUser(user.id)"><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
+        </thead>
